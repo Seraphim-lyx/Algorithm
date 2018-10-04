@@ -35,6 +35,9 @@ public class main {
 		  
 	} 
 	
+	/**
+	 * @return
+	 */
 	public static List<Graph> buildGraph(){
 		List<Graph> list = new LinkedList<Graph>();
 		list.add(new Graph(0,1,2));

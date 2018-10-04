@@ -13,7 +13,8 @@ import java.io.Serializable;
  *
  */
 public class Clone implements Cloneable, Serializable {
-	String test = "a";
+	
+	private String test = "a";
 
 	// public test2(String test) {
 	// // TODO Auto-generated constructor stub
@@ -55,7 +56,7 @@ public class Clone implements Cloneable, Serializable {
 
 	OptionalDataException, ClassNotFoundException, IOException {
 		Clone a = new Clone();
-		Clone b = (Clone) a.serializeDeepClone();
+		Clone b = (Clone) a.clone();
 		a.test = "c";
 		System.out.println(b.test);
 		System.out.println(a.test);
