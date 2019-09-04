@@ -22,44 +22,29 @@ public class GenerateParentheses {
 	List<String> list = new ArrayList();
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		StringBuilder sb = new StringBuilder();
 
-		System.out.println(sb.toString());
-
+		GenerateParentheses.generateParenthesis(3);
 	}
 
-	public List<String> generateParenthesis(int n) {
-
-//		StringBuilder sb = new StringBuilder();
-		int m = n;
-		while (m > 0) {
-			buildStr("", m, n);
-			m--;
-		}
-
+	public static List<String> generateParenthesis(int n) {
+		String str = "";
+		List<String> list = new ArrayList<>();
+		int open = n;
+		int close = n;
+		addCharacter(open, close, str, list);
 		return list;
 	}
 
-	public void buildStr(String str, int m, int n) {
-		int k = m;
-		StringBuilder substr = new StringBuilder();
-		while (k <= n) {
-			substr.append(repeat('(', m));
-			substr.append(repeat(')', m));
-			k = k + m;
+	private static void addCharacter(int open, int end, String str, List<String> list){
+		if (open == 0 && end == 0){
+			list.add(str);
 		}
-		if (m > 0)
-			buildStr(substr.toString(), n-k, n-k);
 
-		
-	}
-
-	public String repeat(Character c, int n) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < n; i++) {
-			sb.append(c);
+		if (open > 0){
+			addCharacter(open-1, end, str+"(", list);
 		}
-		return sb.toString();
+		if (end > 0 && end > open){
+			addCharacter(open, end-1, str+")", list);
+		}
 	}
 }

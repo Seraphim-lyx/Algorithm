@@ -1,27 +1,31 @@
 package LeetCode;
 public class MostWater {
 	public static void main(String[] args) {
-		int[] input = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
-		System.out.println(new MostWater().maxArea(input));
-
+		int height[] = {2,1};
+		MostWater.maxArea(height);
 	}
-
-	public int maxArea(int[] height) {
-		int most = 0;
-		int len = 0;
-		int hei = 0;
-		int n = 0, m = height.length - 1;
-		while (n < m) {
-			len = m - n;
-			hei = height[n] <= height[m] ? height[n] : height[m];
-			most = most > hei * len ? most : hei * len;
-			if(height[n]<height[m]){
-				n++;
+	public static int maxArea(int[] height) {
+		int i = 0;
+		int j = height.length - 1;
+		int max = 0;
+		while (i<j){
+			if (height[i] <= height[j]){
+				max = getMaxArea(i, j, height, i, max);
+				i++;
 			}
-			else{
-				m--;
+			if (height[i] >= height[j]){
+				max = getMaxArea(i, j, height, j, max);
+				j--;
 			}
 		}
-		return most;
+		return max;
 	}
+
+	private static int getMaxArea(int i, int j, int[] height, int index, int max){
+		int area = (j-i)*height[index];
+		return area > max ? area : max;
+	}
+
+
+
 }
